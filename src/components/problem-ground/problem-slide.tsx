@@ -1,13 +1,14 @@
 import { questions } from "../../utils/constants";
-import { getRandomInt } from "../../utils/util";
-import { useState } from "react";
+import { useMemo } from "react";
 
 import { Lightbulb, Volume2 } from "lucide-react";
 
-export const ProblemSlide = () => {
-    const [currentQuestion, setCurrentQuestion] = useState(
-        questions[getRandomInt(0, questions.length - 1)]
-    );
+export const ProblemSlide = ({ currentQuestionIdx }: { currentQuestionIdx: number }) => {
+    const currentQuestion = useMemo(() => {
+        return questions[currentQuestionIdx];
+    }, [currentQuestionIdx]);
+
+    console.log({ currentQuestion });
 
     return (
         <div className="max-w-[712px] w-full mx-auto">
